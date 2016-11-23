@@ -1,0 +1,74 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+            
+            
+  
+  
+ 
+	<http   auto-config="true" >
+                <intercept-url pattern="/managestoreservice/private/*"  access="ROLE_ADMIN"/>              
+                <intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+                <intercept-url pattern="/resources/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+                <intercept-url pattern="/resources/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+                <intercept-url pattern="/managestoreservice/public/*" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+                   <intercept-url pattern="/resources/img/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+                <intercept-url pattern="/login.do*" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+<!--
+<form-login login-page="/login.do" default-target-url="/inscripciones/seleccionarAlumno.do"
+			authentication-failure-url="/loginfailed" />
+		<logout logout-success-url="/logout.do" invalidate-session="true"/>                 
+-->
+                
+                <form-login login-page="/login.do" 
+			authentication-failure-url="/loginfailed.do"
+                        authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
+		<logout logout-success-url="/logout.do" invalidate-session="true"/>                 
+	</http>
+        
+ 
+    <beans:bean id="myAuthenticationSuccessHandler"
+        class="autenticacion.MySimpleUrlAuthenticationSuccessHandler" />
+ 
+        
+ 
+	<authentication-manager>
+<!--
+          <authentication-provider>
+		<user-service>
+			<user name="lvergara" password="1234" authorities="ROLE_USER" />
+		</user-service>
+	  </authentication-provider>
+-->         
+
+          <authentication-provider>
+		<jdbc-user-service data-source-ref="dataSource"
+ 
+		   users-by-username-query="
+		      select nick,password, activo 
+		      from usuario where nick=?" 
+ 
+		   authorities-by-username-query="
+		      select u.idusuario, ur.authority from usuario u, usuarioroles ur 
+		      where u.idusuario = ur.usuario_idusuario and u.nick =?  " 
+ 
+
+ 
+
+		/>
+	   </authentication-provider>
+ 
+	</authentication-manager>
+
+ 
+
+
+
+      
+
+        
+</beans:beans>
