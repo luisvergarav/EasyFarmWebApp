@@ -73,22 +73,22 @@
     <div class="panel-body">
         Datos Articulo
     </div>
-            <form:form commandName="cargaArticuloCmd" method="POST"  action="addArticulo" class="form-horizontal">
+            <form:form commandName="articuloCmd" method="POST"  action="addArticulo" class="form-horizontal">
                 
             
-                        <form:hidden path="idAlmacen" class="form-control" id="idAlmacen" placeholder="Id Almacen"/>
+                        <form:hidden path="id.idAlmacen" class="form-control" id="idAlmacen" placeholder="Id Almacen"/>
                     
                 <div class="form-group">
                     <label for="nombrearticulo" class="control-label col-xs-2">Nombre Articulo</label>
                     <div class="col-xs-10">
-                        <form:input path="articulo.nombrearticulo" type="text" class="form-control" id="nombrearticulo" placeholder="Nombre Articulo"/>
+                        <form:input path="nombreArticulo" type="text" class="form-control" id="nombrearticulo" placeholder="Nombre Articulo"/>
                     </div>
                 </div>
 	
 				<div class="form-group">
                     <label for="precio" class="control-label col-xs-2">Precio</label>
                     <div class="col-xs-10">
-                        <form:input path="articulo.precio" type="text" class="form-control" id="precio" placeholder="Precio"/>
+                        <form:input path="precio" type="text" class="form-control" id="precio" placeholder="Precio"/>
                     </div>
                 </div>
 
@@ -96,11 +96,11 @@
 				<div class="form-group">
                     <label for="fechaactualizacion" class="control-label col-xs-2">Fecha Actualizacion</label>
                     <div class="col-xs-10">
-                        <form:input path="articulo.fechaactualizacion" type="text" class="form-control" id="fechaactualizacion" placeholder="Fecha Actualizacion"/>
+                        <form:input path="fechaActualizacion" type="text" class="form-control" id="fechaactualizacion" placeholder="Fecha Actualizacion"/>
                     </div>
                 </div>
 
-				<div class="form-group">
+			<%-- 	<div class="form-group">
                     <label for="tipoarticulo" class="control-label col-xs-2">Tipo Articulo</label>
                     <div class="col-xs-10">
                         <form:select  path="articulo.tipoarticulo.idtipoarticulo" class="form-control" >
@@ -108,7 +108,7 @@
                             <form:options items="${tiposArticulos.tiposArticulos.tipoArticulo}" itemValue="idtipoarticulo" itemLabel="descripcion"/>
                         </form:select>
                     </div>
-                </div>
+                </div> --%>
 
 
                 <div class="form-group">
