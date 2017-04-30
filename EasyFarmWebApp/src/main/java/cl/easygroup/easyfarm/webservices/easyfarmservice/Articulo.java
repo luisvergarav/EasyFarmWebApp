@@ -46,7 +46,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "nombreArticulo",
     "precio",
     "promocions",
-    "tipoArticulo"
+    "tipoArticulo",
+    "cantidad",
+    "unidadMedida"
 })
 public class Articulo
     extends BaseEntity
@@ -63,8 +65,29 @@ public class Articulo
     @XmlElement(nillable = true)
     protected List<Promocion> promocions;
     protected TipoArticulo tipoArticulo;
+    protected double cantidad;
+    protected String unidadMedida;
 
-    /**
+    
+    
+    
+    public double getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getUnidadMedida() {
+		return unidadMedida;
+	}
+
+	public void setUnidadMedida(String unidadMedida) {
+		this.unidadMedida = unidadMedida;
+	}
+
+	/**
      * Gets the value of the actualizacions property.
      * 
      * <p>

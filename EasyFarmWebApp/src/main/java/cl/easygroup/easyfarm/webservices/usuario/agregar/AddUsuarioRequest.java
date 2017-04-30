@@ -30,7 +30,8 @@ import cl.easygroup.easyfarm.webservices.easyfarmservice.Usuario;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "usuario"
+    "usuario",
+    "role"
 })
 @XmlRootElement(name = "addUsuarioRequest")
 public class AddUsuarioRequest {
@@ -38,6 +39,9 @@ public class AddUsuarioRequest {
     @XmlElement(required = true)
     protected Usuario usuario;
 
+    @XmlElement(required = true)
+    protected String role;
+    
     /**
      * Obtiene el valor de la propiedad usuario.
      * 
@@ -62,4 +66,14 @@ public class AddUsuarioRequest {
         this.usuario = value;
     }
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+    
+    
 }

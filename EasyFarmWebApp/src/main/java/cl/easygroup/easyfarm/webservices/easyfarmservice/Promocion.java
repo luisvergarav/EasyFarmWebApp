@@ -40,7 +40,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "articulos",
     "descripcion",
     "fecha",
-    "id"
+    "id",
+    "listaArticulos"
 })
 public class Promocion
     extends BaseEntity
@@ -53,6 +54,20 @@ public class Promocion
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fecha;
     protected PromocionPK id;
+    @XmlElement(required = true)
+    protected List<String> listaArticulos;
+    
+    
+    
+    
+
+	public List<String> getListaArticulos() {
+		return listaArticulos;
+	}
+
+	public void setListaArticulos(List<String> listaArticulos) {
+		this.listaArticulos = listaArticulos;
+	}
 
     /**
      * Obtiene el valor de la propiedad almacen.

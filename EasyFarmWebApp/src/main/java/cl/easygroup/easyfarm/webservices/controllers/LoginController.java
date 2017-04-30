@@ -22,13 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cl.easygroup.easyfarm.webservices.articulo.agregar.AddArticuloRequest;
+import cl.easygroup.easyfarm.webservices.articulo.converters.ArticuloTypeConverter;
 import cl.easygroup.easyfarm.webservices.easyfarmservice.Almacen;
 import cl.easygroup.easyfarm.webservices.easyfarmservice.Articulo;
 import cl.easygroup.easyfarm.webservices.easyfarmservice.Usuario;
+import cl.easygroup.easyfarm.webservices.easyfarmservice.UsuarioRole;
+import cl.easygroup.easyfarm.webservices.easyfarmservice.UsuarioRolePK;
 import cl.easygroup.easyfarm.webservices.endpoint.EasyFarmServiceWSPort;
 import cl.easygroup.easyfarm.webservices.productor.agregar.AddProductorRequest;
 import cl.easygroup.easyfarm.webservices.usuario.agregar.AddUsuarioRequest;
-
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
  
 @Controller    
 
@@ -43,17 +47,17 @@ public class LoginController {
  
 	}
 
-//	@InitBinder
-//  public void initBinder(WebDataBinder binder) {
-//      binder.registerCustomEditor(javax.xml.datatype.XMLGregorianCalendar.class, new ArticuloTypeEditor());
-//  } 
+	@InitBinder
+  public void initBinder(WebDataBinder binder) {
+      binder.registerCustomEditor(javax.xml.datatype.XMLGregorianCalendar.class, new ArticuloTypeConverter());
+  } 
 	
 	@RequestMapping(value="/loginfailed.do", method = RequestMethod.GET)
 	public String loginerror(ModelMap model) {
-                List<String> errores = new ArrayList();
+                List<String> errores = new ArrayList<String>();
                 errores.add("Error al autenticar el usuario - Usuario o contrase�a invalidos");
 		model.addAttribute("errores",errores);
-		return "loginfailed";
+		return "resultado";
  
 	}
  
@@ -65,11 +69,13 @@ public class LoginController {
 	}
  
 	@RequestMapping(value= "/addUsuario", method = RequestMethod.GET)
-	public String addUsuarioGet(Model model,@ModelAttribute("usuario") Usuario usuario){
+	public String addUsuarioGet(Model model,@ModelAttribute("usuarioRequest") AddUsuarioRequest usuarioRequest){
 		
-		if (usuario.getIdUsuario() == 0){
-			usuario = new Usuario();
-			model.addAttribute("usuarioCmd", usuario);
+		if (usuarioRequest.getUsuario() == null){
+			Usuario usuario = new Usuario();
+			
+			usuarioRequest.setUsuario(usuario);
+			model.addAttribute("usuarioCmd", usuarioRequest);
 			
 			
 		}
@@ -79,14 +85,22 @@ public class LoginController {
 	}
 	
 	
+	
 	@RequestMapping(value = "/addUsuario",method = RequestMethod.POST)
-	public String addUsuarioPost(Model model,@ModelAttribute("usuario") Usuario usuario){
+	public String addUsuarioPost(Model model,@ModelAttribute("usuarioRequest") AddUsuarioRequest usuarioRequest){
 		
-		AddUsuarioRequest request = new AddUsuarioRequest();
-		request.setUsuario(usuario);
-		model.addAttribute("respuesta",storeService.addUsuario(request));
+		//AddUsuarioRequest request = new AddUsuarioRequest();
+		//request.setUsuario(usuario);
+									
 		
-		return "addAlmacenOk";
+		model.addAttribute("respuesta",storeService.addUsuario(usuarioRequest));
+		List<String> errores = new ArrayList<String>();
+
+	
+			errores.add("Usuario Creado con Exito!");
+			model.addAttribute("errores", errores);
+		//return "resultado";
+		return "redirect:login.do";
 	}
 	@RequestMapping(value= "/addProductor", method = RequestMethod.GET)
 	public String addProductorGET(Model model,@ModelAttribute("almacen") Almacen request){
@@ -139,12 +153,24 @@ public class LoginController {
 		
 		AddArticuloRequest request = new AddArticuloRequest();
 		request.setIdProductor(BigInteger.valueOf(1));
-		request.setIdTipoArticulo(BigInteger.valueOf(2));
+		request.setIdTipoArticulo(BigInteger.valueOf(1));
 		request.setIdProductor(BigInteger.valueOf(1));
+		request.setArticulo(articulo);
+		
 		model.addAttribute("respuesta",storeService.addArticulo(request));
 		
 		return "addArticuloOk";
 	}
+	
+	
+	@RequestMapping(value= "/index", method = RequestMethod.GET)
+	public String index(Model model,@ModelAttribute("articulo") Articulo request){
+		
+		
+		return "index";
+		
+	}
+	
 	
 	
 }

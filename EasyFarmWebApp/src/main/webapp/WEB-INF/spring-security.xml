@@ -11,7 +11,7 @@
   
  
 	<http   auto-config="true" >
-                <intercept-url pattern="/managestoreservice/private/*"  access="ROLE_ADMIN"/>              
+                <intercept-url pattern="/managestoreservice/private/*"  access="ROLE_USER,ROLE_CLIENT"/>              
                 <intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
                 <intercept-url pattern="/resources/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
                 <intercept-url pattern="/resources/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
@@ -50,11 +50,11 @@
  
 		   users-by-username-query="
 		      select nick,password, activo 
-		      from usuario where nick=?" 
+		      from Usuario where nick=?" 
  
 		   authorities-by-username-query="
-		      select u.idusuario, ur.authority from usuario u, usuarioroles ur 
-		      where u.idusuario = ur.usuario_idusuario and u.nick =?  " 
+		      select u.idUsuario, ur.authority from Usuario u, UsuarioRoles ur 
+		      where u.idUsuario = ur.idUsuario and u.nick =?  " 
  
 
  

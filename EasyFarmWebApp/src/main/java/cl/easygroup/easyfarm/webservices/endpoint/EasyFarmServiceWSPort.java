@@ -9,12 +9,28 @@ import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import cl.easygroup.easyfarm.webservices.articulo.agregar.AddArticuloRequest;
 import cl.easygroup.easyfarm.webservices.articulo.agregar.AddArticuloResponse;
+import cl.easygroup.easyfarm.webservices.comunas.obtener.GetComunasRequest;
+import cl.easygroup.easyfarm.webservices.comunas.obtener.GetComunasResponse;
 import cl.easygroup.easyfarm.webservices.productor.agregar.AddProductorRequest;
 import cl.easygroup.easyfarm.webservices.productor.agregar.AddProductorResponse;
+import cl.easygroup.easyfarm.webservices.productor.filtro.obtener.GetProductorFiltroRequest;
+import cl.easygroup.easyfarm.webservices.productor.filtro.obtener.GetProductorFiltroResponse;
+import cl.easygroup.easyfarm.webservices.productor.obtener.GetProductorRequest;
+import cl.easygroup.easyfarm.webservices.productor.obtener.GetProductorResponse;
+import cl.easygroup.easyfarm.webservices.productores.obtener.GetProductoresRequest;
+import cl.easygroup.easyfarm.webservices.productores.obtener.GetProductoresResponse;
+import cl.easygroup.easyfarm.webservices.promocion.agregar.AddPromocionRequest;
+import cl.easygroup.easyfarm.webservices.promocion.agregar.AddPromocionResponse;
+import cl.easygroup.easyfarm.webservices.promocion.obtener.GetPromocionRequest;
+import cl.easygroup.easyfarm.webservices.promocion.obtener.GetPromocionResponse;
+import cl.easygroup.easyfarm.webservices.regiones.obtener.GetRegionesRequest;
+import cl.easygroup.easyfarm.webservices.regiones.obtener.GetRegionesResponse;
 import cl.easygroup.easyfarm.webservices.usuario.actualizar.UpdateUsuarioRequest;
 import cl.easygroup.easyfarm.webservices.usuario.actualizar.UpdateUsuarioResponse;
 import cl.easygroup.easyfarm.webservices.usuario.agregar.AddUsuarioRequest;
 import cl.easygroup.easyfarm.webservices.usuario.agregar.AddUsuarioResponse;
+import cl.easygroup.easyfarm.webservices.usuario.obtener.GetUsuarioRequest;
+import cl.easygroup.easyfarm.webservices.usuario.obtener.GetUsuarioResponse;
 
 
 /**
@@ -26,11 +42,19 @@ import cl.easygroup.easyfarm.webservices.usuario.agregar.AddUsuarioResponse;
 @WebService(name = "EasyFarmServiceWSPort", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productor/agregar")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
+    cl.easygroup.easyfarm.webservices.productor.filtro.obtener.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.productores.obtener.ObjectFactory.class,
     cl.easygroup.easyfarm.webservices.articulo.agregar.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.comunas.obtener.ObjectFactory.class,
     cl.easygroup.easyfarm.webservices.easyfarmservice.ObjectFactory.class,
     cl.easygroup.easyfarm.webservices.productor.agregar.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.productor.obtener.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.promocion.agregar.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.promocion.obtener.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.regiones.obtener.ObjectFactory.class,
     cl.easygroup.easyfarm.webservices.usuario.actualizar.ObjectFactory.class,
-    cl.easygroup.easyfarm.webservices.usuario.agregar.ObjectFactory.class
+    cl.easygroup.easyfarm.webservices.usuario.agregar.ObjectFactory.class,
+    cl.easygroup.easyfarm.webservices.usuario.obtener.ObjectFactory.class
 })
 public interface EasyFarmServiceWSPort {
 
@@ -49,15 +73,15 @@ public interface EasyFarmServiceWSPort {
 
     /**
      * 
-     * @param addUsuarioRequest
+     * @param getProductorRequest
      * @return
-     *     returns cl.easygroup.easyfarm.webservices.usuario.agregar.AddUsuarioResponse
+     *     returns cl.easygroup.easyfarm.webservices.productor.obtener.GetProductorResponse
      */
     @WebMethod
-    @WebResult(name = "addUsuarioResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/usuario/agregar", partName = "addUsuarioResponse")
-    public AddUsuarioResponse addUsuario(
-        @WebParam(name = "addUsuarioRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/usuario/agregar", partName = "addUsuarioRequest")
-        AddUsuarioRequest addUsuarioRequest);
+    @WebResult(name = "getProductorResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productor/obtener", partName = "getProductorResponse")
+    public GetProductorResponse getProductor(
+        @WebParam(name = "getProductorRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productor/obtener", partName = "getProductorRequest")
+        GetProductorRequest getProductorRequest);
 
     /**
      * 
@@ -73,6 +97,30 @@ public interface EasyFarmServiceWSPort {
 
     /**
      * 
+     * @param addPromocionRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.promocion.agregar.AddPromocionResponse
+     */
+    @WebMethod
+    @WebResult(name = "addPromocionResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/promocion/agregar", partName = "addPromocionResponse")
+    public AddPromocionResponse addPromocion(
+        @WebParam(name = "addPromocionRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/promocion/agregar", partName = "addPromocionRequest")
+        AddPromocionRequest addPromocionRequest);
+
+    /**
+     * 
+     * @param getPromocionRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.promocion.obtener.GetPromocionResponse
+     */
+    @WebMethod
+    @WebResult(name = "getPromocionResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/promocion/obtener", partName = "getPromocionResponse")
+    public GetPromocionResponse getPromocion(
+        @WebParam(name = "getPromocionRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/promocion/obtener", partName = "getPromocionRequest")
+        GetPromocionRequest getPromocionRequest);
+
+    /**
+     * 
      * @param addProductorRequest
      * @return
      *     returns cl.easygroup.easyfarm.webservices.productor.agregar.AddProductorResponse
@@ -82,5 +130,77 @@ public interface EasyFarmServiceWSPort {
     public AddProductorResponse addProductor(
         @WebParam(name = "addProductorRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productor/agregar", partName = "addProductorRequest")
         AddProductorRequest addProductorRequest);
+
+    /**
+     * 
+     * @param getUsuarioRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.usuario.obtener.GetUsuarioResponse
+     */
+    @WebMethod
+    @WebResult(name = "getUsuarioResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/usuario/obtener", partName = "getUsuarioResponse")
+    public GetUsuarioResponse getUsuario(
+        @WebParam(name = "getUsuarioRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/usuario/obtener", partName = "getUsuarioRequest")
+        GetUsuarioRequest getUsuarioRequest);
+
+    /**
+     * 
+     * @param getProductorFiltroRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.productor.filtro.obtener.GetProductorFiltroResponse
+     */
+    @WebMethod
+    @WebResult(name = "getProductorFiltroResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productor/filtro/obtener", partName = "getProductorFiltroResponse")
+    public GetProductorFiltroResponse getProductorFiltro(
+        @WebParam(name = "getProductorFiltroRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productor/filtro/obtener", partName = "getProductorFiltroRequest")
+        GetProductorFiltroRequest getProductorFiltroRequest);
+
+    /**
+     * 
+     * @param getRegionesRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.regiones.obtener.GetRegionesResponse
+     */
+    @WebMethod
+    @WebResult(name = "getRegionesResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/regiones/obtener", partName = "getRegionesResponse")
+    public GetRegionesResponse getRegiones(
+        @WebParam(name = "getRegionesRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/regiones/obtener", partName = "getRegionesRequest")
+        GetRegionesRequest getRegionesRequest);
+
+    /**
+     * 
+     * @param addUsuarioRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.usuario.agregar.AddUsuarioResponse
+     */
+    @WebMethod
+    @WebResult(name = "addUsuarioResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/usuario/agregar", partName = "addUsuarioResponse")
+    public AddUsuarioResponse addUsuario(
+        @WebParam(name = "addUsuarioRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/usuario/agregar", partName = "addUsuarioRequest")
+        AddUsuarioRequest addUsuarioRequest);
+
+    /**
+     * 
+     * @param getComunasRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.comunas.obtener.GetComunasResponse
+     */
+    @WebMethod
+    @WebResult(name = "getComunasResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/comunas/obtener", partName = "getComunasResponse")
+    public GetComunasResponse getComunas(
+        @WebParam(name = "getComunasRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/comunas/obtener", partName = "getComunasRequest")
+        GetComunasRequest getComunasRequest);
+
+    /**
+     * 
+     * @param getProductoresRequest
+     * @return
+     *     returns cl.easygroup.easyfarm.webservices.productores.obtener.GetProductoresResponse
+     */
+    @WebMethod
+    @WebResult(name = "getProductoresResponse", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productores/obtener", partName = "getProductoresResponse")
+    public GetProductoresResponse getProductores(
+        @WebParam(name = "getProductoresRequest", targetNamespace = "http://cl/easygroup/easyfarm/webservices/productores/obtener", partName = "getProductoresRequest")
+        GetProductoresRequest getProductoresRequest);
 
 }

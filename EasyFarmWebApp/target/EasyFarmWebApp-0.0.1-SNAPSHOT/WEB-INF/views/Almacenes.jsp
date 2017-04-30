@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Proyecto Grocery Store</title>
+    <title>Shop Homepage - Proyecto EasyFarm Web App</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
@@ -63,7 +63,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Grocery Store!!!</a>
+                <a class="navbar-brand" href="#">EasyFarm Store!!!</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -185,7 +185,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
         </footer>
